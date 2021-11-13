@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# usage: $0 allowed_signers_file sig_file file
+#
+
+set -eu 
+principal_signer="$(ssh-keygen -Y find-principals -f "$1" -s "$2")"
+exec ssh-keygen -Y verify -f "$1" -I "$principal_signer" -n file -s "$2" < "$3"

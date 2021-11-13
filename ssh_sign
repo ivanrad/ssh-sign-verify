@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# usage: $0 ssh_key file
+#
+
+exec ssh-keygen -Y sign -n file -f "$1" "$2"

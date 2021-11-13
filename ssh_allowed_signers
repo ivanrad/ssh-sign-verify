@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# usage: $0 [github_username ...]
+#
+
+set -eu
+for i in "$@"; do
+  keys=$(curl -sSLf "https://github.com/$i.keys")
+  while read -e key; do
+    echo "$i $key"
+  done <<<"$keys"
+done
